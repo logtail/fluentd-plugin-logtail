@@ -1,5 +1,7 @@
 # 🪵 Fluent::Plugin::Logtail, a plugin for [Fluentd](http://fluentd.org)
 
+[![build](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml/badge.svg)](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml)
+
 A Fluentd plugin that delivers events to the [Logtail.com logging service](https://logtail.com). It uses batching, msgpack, and retry logic for highly efficient and reliable delivery of log data.
 
 ## Installation
