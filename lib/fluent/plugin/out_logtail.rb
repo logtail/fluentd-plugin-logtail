@@ -23,7 +23,7 @@ module Fluent
     end
 
     def format(tag, time, record)
-      record.merge("dt" => Time.at(time).utc.iso8601).to_msgpack
+      force_utf8_string_values(record.merge("dt" => Time.at(time).utc.iso8601)).to_msgpack
     end
 
     def write(chunk)
@@ -68,6 +68,18 @@ module Fluent
         sleep_for = attempt ** 2
         sleep_for = sleep_for <= 60 ? sleep_for : 60
         (sleep_for / 2) + (rand(0..sleep_for) / 2)
+      end
+
+      def force_utf8_string_values(data)
+        data.transform_values do |val|
+          if val.is_a?(Hash)
+            force_utf8_string_values(val)
+          elsif val.respond_to?(:force_encoding)
+            val.force_encoding('UTF-8')
+          else
+            val
+          end
+        end
       end
 
       def build_http_client
