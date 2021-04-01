@@ -32,7 +32,7 @@ describe Fluent::LogtailOutput do
       stub = stub_request(:post, "https://in.logtail.com/").
         with(
           :body => start_with("\x85\xA3age\x1A\xAArequest_id\xA242\xA9parent_id\xA6parent\xAArouting_id\xA7routing\xA2dt\xB4".force_encoding("ASCII-8BIT")),
-          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>'Logtail Fluentd/0.1.0'}
+          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>'Logtail Fluentd/0.1.1'}
         ).
         to_return(:status => 202, :body => "", :headers => {})
 

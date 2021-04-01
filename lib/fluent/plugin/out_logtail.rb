@@ -5,7 +5,7 @@ module Fluent
   class LogtailOutput < Fluent::BufferedOutput
     Fluent::Plugin.register_output('logtail', self)
 
-    VERSION = "0.1.0".freeze
+    VERSION = "0.1.1".freeze
     CONTENT_TYPE = "application/msgpack".freeze
     HOST = "in.logtail.com".freeze
     PORT = 443
