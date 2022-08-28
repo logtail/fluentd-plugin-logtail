@@ -38,11 +38,17 @@ module Fluent
         end
 
         http = build_http_client
-        body = chunk.read
+        records=0
+        chunk.each do
+          records=records+1
+        end
+        body = [0xdd,records].pack("CN")
+        body << chunk.read
 
         begin
           resp = http.start do |conn|
             req = build_request(body)
+            log.debug("sending #{req.body.length} bytes to logtail")
             conn.request(req)
           end
         ensure
@@ -51,6 +57,7 @@ module Fluent
 
         code = resp.code.to_i
         if code >= 200 && code <= 299
+          log.debug "POST request to logtail was responded to with status code #{code}"
           true
         elsif RETRYABLE_CODES.include?(code)
           sleep_time = sleep_for_attempt(attempt)
