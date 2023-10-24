@@ -1,4 +1,4 @@
-# [Better Stack](https://betterstack.com/logs) PHP client
+# [Better Stack](https://betterstack.com/logs) Fluentd plugin
 
 📣 Logtail is now part of Better Stack. [Learn more ⇗](https://betterstack.com/press/introducing-better-stack/)
 
