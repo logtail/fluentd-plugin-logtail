@@ -1,31 +1,21 @@
-# 🪵 Fluent::Plugin::Logtail, a plugin for [Fluentd](http://fluentd.org)
+# [Better Stack](https://betterstack.com/logs) PHP client
 
-[![build](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml/badge.svg)](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml)
+📣 Logtail is now part of Better Stack. [Learn more ⇗](https://betterstack.com/press/introducing-better-stack/)
 
-A Fluentd plugin that delivers events to the [Logtail.com logging service](https://logtail.com). It uses batching, msgpack, and retry logic for highly efficient and reliable delivery of log data.
+[![Better Stack dashboard](https://github.com/logtail/logtail-python/assets/10132717/e2a1196b-7924-4abc-9b85-055e17b5d499)](https://betterstack.com/logs)
 
-## Installation
+[![ISC License](https://img.shields.io/badge/license-ISC-ff69b4.svg)](LICENSE.md)
+[![build](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/logtail/fluentd-plugin-logtail/actions/workflows/main.yml)
 
-```
-gem install fluent-plugin-logtail
-```
+Experience SQL-compatible structured log management based on ClickHouse. [Learn more ⇗](https://betterstack.com/logs)
 
-## Usage
+## Documentation
 
-In your Fluentd configuration, use `@type logtail`:
+[Getting started ⇗](https://betterstack.com/docs/logs/fluentd/)
 
-```
-<match your_match>
-  @type logtail
-  source_token YOUR_SOURCE_TOKEN
-  # ip 127.0.0.1
-  buffer_chunk_limit 1m                      # Must be < 5m
-  flush_at_shutdown true                     # Only needed with file buffer
-</match>
-```
+## Need help?
+Please let us know at [hello@betterstack.com](mailto:hello@betterstack.com). We're happy to help!
 
-## Configuration
+---
 
-* `source_token` - This is your [Logtail source token](https://logtail.com).
-
-For advanced configuration options, please see to the [buffered output parameters documentation.](http://docs.fluentd.org/articles/output-plugin-overview#buffered-output-parameters).
+[ISC license](https://github.com/logtail/fluentd-plugin-logtail/blob/main/LICENSE.md)
