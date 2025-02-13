@@ -3,7 +3,7 @@ require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'fluent-plugin-logtail'
-  s.version     = '0.1.2'
+  s.version     = '0.2.1'
   s.date        = Date.today.to_s
   s.summary     = 'Logtail.com plugin for Fluentd'
   s.description = 'Streams Fluentd logs to the Logtail.com logging service.'
