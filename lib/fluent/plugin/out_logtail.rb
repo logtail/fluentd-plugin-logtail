@@ -7,7 +7,6 @@ module Fluent
 
     VERSION = "0.1.1".freeze
     CONTENT_TYPE = "application/msgpack".freeze
-    HOST = "in.logtail.com".freeze
     PORT = 443
     PATH = "/".freeze
     MAX_ATTEMPTS = 3.freeze
@@ -16,9 +15,11 @@ module Fluent
 
     config_param :source_token, :string, secret: true
     config_param :ip, :string, default: nil
+    config_param :ingesting_host, :string, default: "in.logs.betterstack.com"
 
     def configure(conf)
       @source_token = conf["source_token"]
+      @ingesting_host = conf["ingesting_host"]
       super
     end
 
@@ -90,7 +91,7 @@ module Fluent
       end
 
       def build_http_client
-        http = Net::HTTP.new(HOST, PORT)
+        http = Net::HTTP.new(@ingesting_host, PORT)
         http.use_ssl = true
         # Verification on Windows fails despite having a valid certificate.
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
