@@ -39,6 +39,9 @@ describe Fluent::LogtailOutput do
     }.configure(cloud_config)
   end
 
+  # The gem version the bundle loaded from the gemspec, so a version bump needs no spec change
+  let(:user_agent) { "Logtail Fluentd/#{Gem.loaded_specs.fetch("fluent-plugin-logtail").version}" }
+
   let(:record) do
     {'age' => 26, 'request_id' => '42', 'parent_id' => 'parent', 'routing_id' => 'routing'}
   end
@@ -52,7 +55,7 @@ describe Fluent::LogtailOutput do
       stub = stub_request(:post, "https://in.logs.betterstack.com/").
         with(
           :body => start_with("\xDD\x00\x00\x00\x01\x85\xA3age\x1A\xAArequest_id\xA242\xA9parent_id\xA6parent\xAArouting_id\xA7routing\xA2dt\xB4".force_encoding("ASCII-8BIT")),
-          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>'Logtail Fluentd/0.1.1'}
+          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>user_agent}
         ).
         to_return(:status => 202, :body => "", :headers => {})
 
@@ -86,7 +89,7 @@ describe Fluent::LogtailOutput do
       stub = stub_request(:post, "https://s1234.eu-nbg-2.betterstackdata.com/").
         with(
           :body => start_with("\xDD\x00\x00\x00\x01\x85\xA3age\x1A\xAArequest_id\xA242\xA9parent_id\xA6parent\xAArouting_id\xA7routing\xA2dt\xB4".force_encoding("ASCII-8BIT")),
-          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>'Logtail Fluentd/0.1.1'}
+          :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer abcd1234', 'Content-Type'=>'application/msgpack', 'User-Agent'=>user_agent}
         ).
         to_return(:status => 202, :body => "", :headers => {})
 
