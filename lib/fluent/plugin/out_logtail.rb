@@ -1,11 +1,12 @@
 require 'fluent/output'
 require 'net/https'
+require_relative 'logtail/version'
 
 module Fluent
   class LogtailOutput < Fluent::BufferedOutput
     Fluent::Plugin.register_output('logtail', self)
 
-    VERSION = "0.1.1".freeze
+    VERSION = Fluent::Plugin::Logtail::VERSION
     CONTENT_TYPE = "application/msgpack".freeze
     PORT = 443
     PATH = "/".freeze
