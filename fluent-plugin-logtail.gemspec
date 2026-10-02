@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
+require_relative "lib/fluent/plugin/logtail/version"
 require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'fluent-plugin-logtail'
-  s.version     = '0.2.1'
+  s.version     = Fluent::Plugin::Logtail::VERSION
   s.date        = Date.today.to_s
   s.summary     = 'Logtail.com plugin for Fluentd'
   s.description = 'Streams Fluentd logs to the Logtail.com logging service.'
